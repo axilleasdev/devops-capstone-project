@@ -37,7 +37,6 @@ class TestAccountService(TestCase):
         init_db(app)
         talisman.force_https = False
 
-
     @classmethod
     def tearDownClass(cls):
         """Runs once before test suite"""
@@ -186,13 +185,12 @@ class TestAccountService(TestCase):
         data = resp.get_json()
         self.assertEqual(len(data), 5)
 
-
     def test_method_not_allowed(self):
         """It should not allow an illegal method call"""
         resp = self.client.delete(BASE_URL)
         self.assertEqual(resp.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
-    # SEACURITY TEST 
+    # SEACURITY TEST
 
     def test_security_headers(self):
         """It should return security headers"""
@@ -207,7 +205,7 @@ class TestAccountService(TestCase):
         for key, value in headers.items():
             self.assertEqual(response.headers.get(key), value)
 
-    # TEST CORS 
+    # TEST CORS
 
     def test_cors_security(self):
         """It should return a CORS header"""
